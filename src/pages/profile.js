@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUser, updateUser } from '../utils/storage';
 
+
 const Profile = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,22 +21,24 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <h2>Profile Page</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="profile">
+      <h2 className="profile-title">Profile Page</h2>
+      <form onSubmit={handleSubmit} className="profile-form">
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="profile-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="profile-input"
         />
-        <button type="submit">Update Profile</button>
+        <button type="submit" className="profile-button">Update Profile</button>
       </form>
     </div>
   );

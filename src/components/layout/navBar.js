@@ -12,14 +12,17 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/">Login</Link>
-      <Link to="/register">Register</Link>
-      {isAuthenticated() && (
+      {isAuthenticated() ? (
         <>
           <Link to="/home">Home</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/completed-tasks">Completed Tasks</Link>
           <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="/">Login</Link>
+          <Link to="/register">Register</Link>
         </>
       )}
     </nav>

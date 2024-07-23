@@ -1,16 +1,18 @@
 import React from 'react';
-import { deleteTask, markTaskComplete } from '../../utils/storage';
 
-const TaskItem = ({ task }) => {
+
+const TaskItem = ({ task, onDelete, onMarkComplete }) => {
   return (
-    <div>
-      <h3>{task.name}</h3>
-      <p>{task.description}</p>
-      <p>Priority: {task.priority}</p>
-      <p>Status: {task.status}</p>
-      <p>Due Date: {task.dueDate}</p>
-      <button onClick={() => markTaskComplete(task.id)}>Complete</button>
-      <button onClick={() => deleteTask(task.id)}>Delete</button>
+    <div className="task-item">
+      <h3 className="task-name">{task.name}</h3>
+      <p className="task-description">{task.description}</p>
+      <p className="task-priority">Priority: {task.priority}</p>
+      <p className="task-status">Status: {task.status}</p>
+      <p className="task-due-date">Due Date: {task.dueDate}</p>
+      <div className="task-actions">
+        <button onClick={() => onMarkComplete(task.id)}>Complete</button>
+        <button onClick={() => onDelete(task.id)}>Delete</button>
+      </div>
     </div>
   );
 };

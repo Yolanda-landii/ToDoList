@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../utils/authentication';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -18,28 +19,34 @@ const Login = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">Login</h2>
-      {error && <p className="text-red-500">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="block w-full p-2 border border-gray-300 rounded"
+          className="login-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="block w-full p-2 border border-gray-300 rounded"
+          className="login-input"
         />
-        <button type="submit" className="block w-full p-2 bg-blue-500 text-white rounded">
+        <button type="submit" className="login-button">
           Login
         </button>
       </form>
+      <div className="login-footer">
+        <p>Create a new Account</p>
+        <Link to="/register" className="register-link">
+          Register
+        </Link>
+      </div>
     </div>
   );
 };

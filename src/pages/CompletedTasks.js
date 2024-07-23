@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchCompletedTasks } from '../utils/storage';
 
+
 const CompletedTasks = () => {
   const [completedTasks, setCompletedTasks] = useState([]);
 
@@ -9,14 +10,14 @@ const CompletedTasks = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Completed Tasks</h2>
+    <div className="completed-tasks">
+      <h2 className="completed-tasks-title">Completed Tasks</h2>
       {completedTasks.map((task) => (
-        <div key={task.id}>
-          <h3>{task.name}</h3>
-          <p>{task.description}</p>
-          <p>Priority: {task.priority}</p>
-          <p>Completed on: {task.completedDate}</p>
+        <div key={task.id} className="task-item">
+          <h3 className="task-name">{task.name}</h3>
+          <p className="task-description">{task.description}</p>
+          <p className="task-priority">Priority: {task.priority}</p>
+          <p className="task-completed-date">Completed on: {task.completedDate}</p>
         </div>
       ))}
     </div>
