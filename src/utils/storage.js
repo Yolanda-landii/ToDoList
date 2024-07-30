@@ -1,11 +1,23 @@
-export const registerUser = (username, password) => {
+export const registerUser = (username, password, profilePicture) => {
   const users = JSON.parse(localStorage.getItem('users')) || [];
-  users.push({ username, password });
+  users.push({ username, password, profilePicture });
   localStorage.setItem('users', JSON.stringify(users));
 };
 
+
 export const fetchTasks = () => {
-  return JSON.parse(localStorage.getItem('tasks')) || [];
+  const tasks = localStorage.getItem('tasks');
+  
+  if (!tasks) {
+    return []; 
+  }
+  
+  try {
+    return JSON.parse(tasks);
+  } catch (error) {
+    console.error('Failed to parse tasks:', error);
+    return []; 
+  }
 };
 
 export const addTask = (task) => {
@@ -27,6 +39,19 @@ export const deleteTask = (id) => {
   localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 };
 
+export const markTaskComplete = (id) => {
+  let tasks = fetchTasks();
+  const task = tasks.find(task => task.id === id);
+  if (task) {
+    task.status = 'Complete';
+    task.completedDate = new Date().toLocaleDateString();
+    localStorage.setItem('tasks', JSON.stringify(tasks.filter(t => t.id !== id)));
+    let completedTasks = fetchCompletedTasks();
+    completedTasks.push(task);
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+  }
+};
+
 export const getUser = () => {
   const users = JSON.parse(localStorage.getItem('users')) || [];
   return users.length ? users[0] : null; // assuming single user for simplicity
@@ -42,23 +67,8 @@ export const fetchCompletedTasks = () => {
   return JSON.parse(localStorage.getItem('completedTasks')) || [];
 };
 
-export const markTaskComplete = (id) => {
-  let tasks = fetchTasks();
-  const task = tasks.find(task => task.id === id);
-  if (task) {
-    task.status = 'Complete';
-    task.completedDate = new Date().toLocaleDateString();
-    localStorage.setItem('tasks', JSON.stringify(tasks.filter(t => t.id !== id)));
-    let completedTasks = fetchCompletedTasks();
-    completedTasks.push(task);
-    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-  }
-};
-
-// utils/authentication.js
-
 export const isAuthenticated = () => {
-  return !!localStorage.getItem('authToken'); // Adjust as needed for your auth logic
+  return !!localStorage.getItem('authToken'); 
 };
 
 export const logout = () => {

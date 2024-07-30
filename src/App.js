@@ -7,19 +7,35 @@ import CompletedTasks from './pages/CompletedTasks';
 import Navbar from './components/layout/navBar';
 import Footer from './components/layout/footer';
 import ProtectedRoute from './components/layout/ProtectedRoute';
+import PublicRoute from './components/layout/PublicRoute'; 
 import './App.css';
 
 function App() {
   return (
     <Router>
+      
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/home"
           element={
             <ProtectedRoute>
-              <Navbar />
+              <Navbar/>
               <Home />
               <Footer />
             </ProtectedRoute>
@@ -29,7 +45,7 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <Navbar />
+              <Navbar/>
               <Profile />
               <Footer />
             </ProtectedRoute>
@@ -39,7 +55,7 @@ function App() {
           path="/completed-tasks"
           element={
             <ProtectedRoute>
-              <Navbar />
+              <Navbar/>
               <CompletedTasks />
               <Footer />
             </ProtectedRoute>

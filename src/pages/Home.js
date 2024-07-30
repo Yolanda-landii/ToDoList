@@ -5,6 +5,8 @@ import { fetchTasks, addTask, updateTask, deleteTask, markTaskComplete } from '.
 
 const Home = () => {
   const [tasks, setTasks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchPriority, setSearchPriority] = useState('');
 
   useEffect(() => {
     setTasks(fetchTasks());
@@ -26,12 +28,41 @@ const Home = () => {
     setTasks(fetchTasks());
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handlePriorityChange = (e) => {
+    setSearchPriority(e.target.value);
+  };
+
+  const filteredTasks = tasks.filter(task => {
+    const matchesName = task.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesPriority = searchPriority ? task.priority === searchPriority : true;
+    return matchesName && matchesPriority;
+  });
+
   return (
     <div className="home">
-      <h1 className="home-title">Home Page</h1>
+      <h1 className="home-title">Tasks</h1>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchQuery}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        <select value={searchPriority} onChange={handlePriorityChange} className="search-select">
+          <option value="">All Priorities</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
       <TaskForm onSubmit={handleTaskSubmit} />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         onUpdateTask={handleTaskSubmit}
         onDeleteTask={handleDeleteTask}
         onMarkTaskComplete={handleMarkTaskComplete}

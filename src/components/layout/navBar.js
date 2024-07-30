@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { isAuthenticated, logout } from '../../utils/authentication';
+import { getUser } from '../../utils/storage';
+
 
 const Navbar = () => {
+  const [profilePicture, setProfilePicture] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      const user = getUser();
+      if (user && user.profilePicture) {
+        setProfilePicture(user.profilePicture);
+      }
+    }
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -11,13 +23,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
+    <nav className="navbar">
       {isAuthenticated() ? (
         <>
           <Link to="/home">Home</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/completed-tasks">Completed Tasks</Link>
           <button onClick={handleLogout}>Logout</button>
+          {profilePicture && (
+            <img
+              src={profilePicture}
+              alt="Profile"
+              className="navbar-profile-picture"
+            />
+          )}
         </>
       ) : (
         <>
