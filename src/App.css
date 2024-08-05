@@ -212,6 +212,12 @@ nav button:hover {
   padding: 1rem;
   padding-top: 50px;
 }
+.no-tasks-message {
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 200px;
+  margin-left: 40%;
+}
 
 .completed-tasks-title {
   font-size: 1.5rem;

@@ -1,9 +1,37 @@
+export const isAuthenticated = () => {
+  return !!localStorage.getItem('authenticatedUser');
+};
+
+export const loginUser = (username, password) => {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const user = users.find(user => user.username === username && user.password === password);
+  if (user) {
+    localStorage.setItem('authenticatedUser', JSON.stringify(user));
+    return true;
+  }
+  return false;
+};
+
+export const logout = () => {
+  localStorage.removeItem('authenticatedUser');
+};
+
 export const registerUser = (username, password, profilePicture) => {
   const users = JSON.parse(localStorage.getItem('users')) || [];
   users.push({ username, password, profilePicture });
   localStorage.setItem('users', JSON.stringify(users));
 };
 
+export const getUser = () => {
+  return JSON.parse(localStorage.getItem('authenticatedUser'));
+};
+
+export const updateUser = (updatedUser) => {
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  users = users.map(user => user.username === updatedUser.username ? updatedUser : user);
+  localStorage.setItem('users', JSON.stringify(users));
+  localStorage.setItem('authenticatedUser', JSON.stringify(updatedUser)); // Update the authenticated user data as well
+};
 
 export const fetchTasks = () => {
   const tasks = localStorage.getItem('tasks');
@@ -52,25 +80,6 @@ export const markTaskComplete = (id) => {
   }
 };
 
-export const getUser = () => {
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  return users.length ? users[0] : null; // assuming single user for simplicity
-};
-
-export const updateUser = (updatedUser) => {
-  let users = JSON.parse(localStorage.getItem('users')) || [];
-  users = users.map(user => user.username === updatedUser.username ? updatedUser : user);
-  localStorage.setItem('users', JSON.stringify(users));
-};
-
 export const fetchCompletedTasks = () => {
   return JSON.parse(localStorage.getItem('completedTasks')) || [];
-};
-
-export const isAuthenticated = () => {
-  return !!localStorage.getItem('authToken'); 
-};
-
-export const logout = () => {
-  localStorage.removeItem('authToken');
 };
