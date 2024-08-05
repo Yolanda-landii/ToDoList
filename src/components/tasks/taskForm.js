@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { addTask, updateTask } from '../../utils/storage';
 
-
 const TaskForm = ({ task, onSubmit }) => {
   const [name, setName] = useState(task ? task.name : '');
   const [description, setDescription] = useState(task ? task.description : '');
@@ -10,8 +9,14 @@ const TaskForm = ({ task, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!name.trim() || !description.trim()) {
       alert('Task name and description cannot be empty');
+      return;
+    }
+
+    if (!dueDate) {
+      alert('Please select a due date');
       return;
     }
 
