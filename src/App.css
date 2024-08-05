@@ -1,4 +1,4 @@
-/* App.css */
+/* General Styles */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -20,6 +20,7 @@ main {
   padding-top: 70px;
 }
 
+/* Navbar Styles */
 nav {
   background-color: #2d3748;
   color: white;
@@ -43,7 +44,7 @@ nav a:hover {
 }
 
 nav button {
-  background-color: #f56565; 
+  background-color: #f56565;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -53,9 +54,10 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #e53e3e; 
+  background-color: #e53e3e;
 }
-/* Footer.css */
+
+/* Footer Styles */
 .footer {
   background-color: #333;
   color: white;
@@ -65,15 +67,14 @@ nav button:hover {
   bottom: 0;
   width: 100%;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .footer-text {
   margin: 0;
 }
 
-
-/* TaskItem.css */
+/* Task Item Styles */
 .task-item {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -100,7 +101,7 @@ nav button:hover {
 }
 
 .task-actions button {
-  background-color: #3182ce; 
+  background-color: #3182ce;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -111,18 +112,18 @@ nav button:hover {
 }
 
 .task-actions button:hover {
-  background-color: #2b6cb0; 
+  background-color: #3d3f41;
 }
 
 .task-actions button:last-child {
-  background-color: #f56565; 
+  background-color: #f56565;
 }
 
 .task-actions button:last-child:hover {
   background-color: #e53e3e;
 }
 
-/* TaskForm.css */
+/* Task Form Styles */
 .task-form {
   display: flex;
   flex-direction: column;
@@ -153,7 +154,7 @@ nav button:hover {
 }
 
 .form-button:hover {
-  background-color: #0056b3;
+  background-color: #3d3f41;
 }
 
 @media (max-width: 600px) {
@@ -162,7 +163,7 @@ nav button:hover {
   }
 }
 
-/* Login.css */
+/* Login Styles */
 .login-container {
   max-width: 400px;
   margin: 0 auto;
@@ -176,7 +177,7 @@ nav button:hover {
 }
 
 .error-message {
-  color: #f56565; 
+  color: #f56565;
   margin-bottom: 1rem;
 }
 
@@ -193,7 +194,7 @@ nav button:hover {
 }
 
 .login-button {
-  background-color: #3182ce; 
+  background-color: #3182ce;
   color: white;
   border: none;
   padding: 0.5rem;
@@ -203,9 +204,10 @@ nav button:hover {
 }
 
 .login-button:hover {
-  background-color: #2b6cb0; 
+  background-color: #3d3f41;
 }
-/* CompletedTasks.css */
+
+/* Completed Tasks Styles */
 .completed-tasks {
   padding: 1rem;
   padding-top: 50px;
@@ -236,7 +238,7 @@ nav button:hover {
   margin-bottom: 0.25rem;
 }
 
-/* Register.css */
+/* Register Styles */
 .register-container {
   max-width: 400px;
   margin: 0 auto;
@@ -262,7 +264,7 @@ nav button:hover {
 }
 
 .register-button {
-  background-color: #3182ce; 
+  background-color: #3182ce;
   color: white;
   border: none;
   padding: 0.5rem;
@@ -272,10 +274,10 @@ nav button:hover {
 }
 
 .register-button:hover {
-  background-color: #2b6cb0; 
+  background-color: #3d3f41;
 }
 
-/* Profile.css */
+/* Profile Styles */
 .profile {
   max-width: 600px;
   margin: 0 auto;
@@ -295,8 +297,6 @@ nav button:hover {
   gap: 1rem;
 }
 
-
-
 .profile-input {
   padding: 0.75rem;
   border: 1px solid #ccc;
@@ -315,21 +315,26 @@ nav button:hover {
 }
 
 .profile-button:hover {
-  background-color: #0056b3;
+  background-color: #3d3f41;
 }
+
+.register-footer,
 .login-footer {
   margin-top: 20px;
   text-align: center;
 }
 
+.login-link,
 .register-link {
   color: #007bff;
   text-decoration: none;
 }
 
+.login-link:hover,
 .register-link:hover {
   text-decoration: underline;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -341,7 +346,7 @@ nav button:hover {
   top: 0;
   width: 100%;
   z-index: 1000;
-  height: 50px; 
+  height: 50px;
 }
 
 .navbar a,
@@ -361,11 +366,10 @@ nav button:hover {
   object-fit: cover;
   margin-left: auto;
 }
+
 .home {
   padding-top: 50px;
-  
 }
-
 
 .search-container {
   display: flex;
@@ -378,4 +382,47 @@ nav button:hover {
 .search-select {
   padding: 0.5rem;
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar a,
+  .navbar button {
+    margin: 0 5px;
+  }
+
+  .navbar-profile-picture {
+    width: 50px;
+    height: 50px;
+  }
+
+  .search-container {
+    margin-left: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a,
+  .navbar button {
+    margin: 5px 0;
+  }
+
+  .navbar-profile-picture {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-container {
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .search-input,
+  .search-select {
+    width: 100%;
+  }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import { registerUser } from '../utils/storage';
-
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -52,6 +51,12 @@ const Register = () => {
           Register
         </button>
       </form>
+      <div className="register-footer">
+        <p>Already have an account?</p>
+        <Link to="/" className="login-link">
+          Login
+        </Link>
+      </div>
     </div>
   );
 };
